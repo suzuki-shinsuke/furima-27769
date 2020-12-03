@@ -30,6 +30,11 @@ describe OrderAddress do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Shipping area must be other than 0')
       end
+      it 'shipping_area_idが空白' do
+        @order_address.shipping_area_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Shipping area can't be blank", "Shipping area is not a number")
+      end
       it 'cityが空' do
         @order_address.city = ''
         @order_address.valid?

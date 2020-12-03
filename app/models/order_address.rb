@@ -8,6 +8,7 @@ class OrderAddress
     validates :address
     validates :number
     validates :token
+    validates :shipping_area_id
   end
 
   validates :shipping_area_id, numericality: { other_than: 0 }
