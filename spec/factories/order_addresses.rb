@@ -5,6 +5,7 @@ FactoryBot.define do
     shipping_area_id { 1 }
     city { '福岡市中央区' }
     address { '小笹4丁目12-3' }
+    building { 'レジデンスホテル' }
     number { '09028374847' }
   end
 end

@@ -9,12 +9,26 @@ describe OrderAddress do
 
   describe '商品購入' do
     context '商品購入がうまく行く時' do
-      it 'token, user_id, item_id, postal_code, shipping_area_id, sity, address, number, order_id が全て存在する' do
+      it 'token, user_id, item_id, postal_code, shipping_area_id, sity, address, building, number, order_id が全て存在する' do
+        expect(@order_address).to be_valid
+      end
+      it 'buildingが空でも登録できる' do
+        @order_address.building = ""
         expect(@order_address).to be_valid
       end
     end
 
     context '商品購入がうまくいかない時' do
+      it 'user_idが空' do
+        @order_address.user_id = ""
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空' do
+        @order_address.item_id = ""
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
+      end
       it 'クレカの情報が正しく入っていない（tokenが空）' do
         @order_address.token = nil
         @order_address.valid?
